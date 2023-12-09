@@ -80,7 +80,11 @@ namespace WordHelper_Proxy_
 
         public RealWord()
         {
-            words = File.ReadAllLines("Words.txt").ToList();
+            var dir = Directory.GetCurrentDirectory();
+            var directoryInfo = new DirectoryInfo(dir);
+            var currentDir = directoryInfo.Parent.Parent.Parent;
+            var path = currentDir.FullName;
+            words = File.ReadAllLines(path+"/Database"+"/Words.txt").ToList();
         }
 
         public List<string> GetSimilarWords(string enteredWord)
